@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+// mongoose.set('runValidators', true);
+
 const tourSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -11,7 +13,7 @@ const tourSchema = new mongoose.Schema({
     default: 4.5,
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, 'A tour must have a price!'],
   },
 });
