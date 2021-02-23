@@ -55,6 +55,7 @@ const tourSchema = new mongoose.Schema({
   startDates: [Date],
 });
 
+tourSchema.plugin(require('mongoose-beautiful-unique-validation'));
 const Tour = mongoose.model('Tour', tourSchema);
 
 module.exports = Tour;
