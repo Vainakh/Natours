@@ -12,14 +12,17 @@ getAllTours = async (req, res) => {
     //advanced filtering
     let queryStr = JSON.stringify(queryObj);
     queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-    console.log(JSON.parse(queryStr));
     
     let query = Tour.find(JSON.parse(queryStr));
 
     //sorting
 
     if (req.query.sort) {
-      query = query.sort(req.query.sort);
+      const sortBy = req.query.sort.split(',').join(' ');
+      console.log(sortBy)
+      query = query.sort(sortBy);
+    } else {
+      query = query.sort('-createdAt')
     }
     //execute query
     const tours = await query;
